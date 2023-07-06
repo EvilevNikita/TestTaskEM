@@ -58,7 +58,7 @@ struct CategoryView: View {
                                         
                                         Text(dish.name)
                                             .customFont(size: 14, kerning: 0.14)
-                                            .frame(width: gridSize, height: 33, alignment: .topLeading)
+                                            .frame(width: gridSize, height: 34, alignment: .topLeading)
                                             .lineLimit(2)
                                             .multilineTextAlignment(.leading)
                                     }
