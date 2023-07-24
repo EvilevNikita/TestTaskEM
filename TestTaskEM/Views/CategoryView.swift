@@ -33,7 +33,7 @@ struct CategoryView: View {
                                         self.coordinator.openProductView()
                                     }
                                 }) {
-                                    VStack {
+                                    VStack(spacing: 5) {
                                         ZStack {
                                             Color(red: 0.97, green: 0.97, blue: 0.96)
                                             

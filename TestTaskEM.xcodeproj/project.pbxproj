@@ -44,6 +44,7 @@
 		64EE515F2A5518E10005EA8B /* SF-Pro-Display-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64EE514D2A5518E00005EA8B /* SF-Pro-Display-LightItalic.otf */; };
 		64EE51602A5518E10005EA8B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64EE514E2A5518E00005EA8B /* SF-Pro-Display-Bold.otf */; };
 		64EE51612A5518E10005EA8B /* SF-Pro-Display-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64EE514F2A5518E10005EA8B /* SF-Pro-Display-ThinItalic.otf */; };
+		64FC82A02A6E2EF300B06528 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC829F2A6E2EF300B06528 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		64EE514D2A5518E00005EA8B /* SF-Pro-Display-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-LightItalic.otf"; sourceTree = "<group>"; };
 		64EE514E2A5518E00005EA8B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		64EE514F2A5518E10005EA8B /* SF-Pro-Display-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-ThinItalic.otf"; sourceTree = "<group>"; };
+		64FC829F2A6E2EF300B06528 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				64B7FD552A4C23EE00D31056 /* Categories.swift */,
 				64B7FD572A4C244600D31056 /* Dishes.swift */,
 				64EE513A2A5461E90005EA8B /* UserData.swift */,
+				64FC829F2A6E2EF300B06528 /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FC82A02A6E2EF300B06528 /* NetworkManager.swift in Sources */,
 				64EE51132A529AD50005EA8B /* Coordinator.swift in Sources */,
 				6469840B2A502C6B00A368A1 /* BasketView.swift in Sources */,
 				64EE510F2A51E0110005EA8B /* FontExtension.swift in Sources */,

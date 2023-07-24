@@ -5,14 +5,11 @@
 //  Created by Nikita Ivlev on 2/7/23.
 //
 
-import Combine
 import Foundation
 
 class CategoryViewModel: ObservableObject {
     @Published var categories = [Category]()
     @Published var selectedCategory: Category?
-
-    private var cancellables = Set<AnyCancellable>()
 
     init() {
         loadCategories()
@@ -24,28 +21,15 @@ class CategoryViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { output in
-                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
-            .decode(type: CategoryResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        print("Network error: \(error.localizedDescription)")
-                    }
-                },
-                receiveValue: { categoryResponse in
+        NetworkManager.shared.fetchData(from: url) { (result: Result<CategoryResponse, Error>) in
+            switch result {
+            case .success(let categoryResponse):
+                DispatchQueue.main.async {
                     self.categories = categoryResponse.сategories
                 }
-            )
-            .store(in: &cancellables)
+            case .failure(let error):
+                print("Failed to decode JSON: \(error)")
+            }
+        }
     }
 }

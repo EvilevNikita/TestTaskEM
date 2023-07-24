@@ -16,8 +16,6 @@ struct CoordinatorView: View {
     @StateObject var dishesVM: DishesViewModel
     @StateObject var user: UserData
 
-    // пришлось использовать инициализатор для того чтоб сделать фон табьар непрозрачным - на новых моделях телефонов при перехеоде с MainView() на CategoryView() представление отображалось поверх таббара
-
     init(categoryVM: CategoryViewModel, productVM: ProductViewModel, basketVM: BasketViewModel, dishesVM: DishesViewModel, user: UserData) {
         self._categoryVM = StateObject(wrappedValue: categoryVM)
         self._productVM = StateObject(wrappedValue: productVM)
@@ -125,7 +123,7 @@ struct BasketPath: View {
 
 struct CoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        CoordinatorView(categoryVM: CategoryViewModel(), //Argument passed to call that takes no arguments
+        CoordinatorView(categoryVM: CategoryViewModel(),
                         productVM: ProductViewModel(),
                         basketVM: BasketViewModel(),
                         dishesVM: DishesViewModel(),

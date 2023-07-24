@@ -5,15 +5,12 @@
 //  Created by Nikita Ivlev on 2/7/23.
 //
 
-import Combine
 import Foundation
 
 class DishesViewModel: ObservableObject {
     @Published var dishes = [Dish]()
     @Published var tags = ["Все меню", "Салаты", "С рисом", "С рыбой"]
     @Published var selectedTag: String = "Все меню"
-
-    private var cancellables = Set<AnyCancellable>()
 
     init() {
         loadDishes()
@@ -25,28 +22,15 @@ class DishesViewModel: ObservableObject {
             return
         }
 
-        URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { output in
-                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
-            .decode(type: DishesResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        print("Network error: \(error.localizedDescription)")
-                    }
-                },
-                receiveValue: { dishesResponse in
+        NetworkManager.shared.fetchData(from: url) { (result: Result<DishesResponse, Error>) in
+            switch result {
+            case .success(let dishesResponse):
+                DispatchQueue.main.async {
                     self.dishes = dishesResponse.dishes
                 }
-            )
-            .store(in: &cancellables)
+            case .failure(let error):
+                print("Failed to decode JSON: \(error)")
+            }
+        }
     }
 }
