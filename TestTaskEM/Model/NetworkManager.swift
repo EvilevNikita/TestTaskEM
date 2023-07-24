@@ -8,9 +8,8 @@
 import Foundation
 
 struct NetworkManager {
-    static let shared = NetworkManager()
 
-    private init() {}
+    static let shared = NetworkManager()
 
     func fetchData<T: Decodable>(from url: URL, completion: @escaping (Result<T, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
